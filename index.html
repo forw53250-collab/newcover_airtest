@@ -213,6 +213,7 @@ label{
 <script>
 
 let scores = {A:0,B:0,C:0,D:0,E:0};
+let answers = [];
 let current = 1;
 
 const photos = {
@@ -231,6 +232,8 @@ function startQuiz(){
 }
 
 function next(val){
+
+answers.push(val);
 
 scores[val]++;
 
@@ -266,7 +269,20 @@ document.getElementById("result").style.display = "block";
 document.getElementById("result").innerHTML =
 `
 <img src="${photos[winner]}" class="result-photo">
+
 `;
+fetch("https://script.google.com/macros/s/AKfycbxqKW38r5xoitRXexRqGLmztDt27-k7uYwOmKqr_pqoFyc9qoIQfhPlouuvnfzyGq0/exec",{
+    method:"POST",
+    body:JSON.stringify({
+        q1:answers[0],
+        q2:answers[1],
+        q3:answers[2],
+        q4:answers[3],
+        q5:answers[4],
+        q6:answers[5],
+        result:winner
+    })
+});
 }
 
 </script>
