@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>冷氣人格測驗</title>
+
+<style>
+body{
+    font-family:"Microsoft JhengHei",sans-serif;
+    background:#f4fff4;
+    margin:0;
+    padding:20px;
+}
+
+/* 開場頁 */
+.start-page{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+}
+
+.start-page input{
+    padding:10px;
+    width:80%;
+    margin-top:10px;
+}
+
+.start-page button{
+    margin-top:15px;
+    padding:10px 20px;
+    border:none;
+    background:#0088cc;
+    color:white;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* 題目頁 */
+.container{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+    display:none;
+}
+
+h1{
+    text-align:center;
+    color:#0088cc;
+}
+
+.question{
+    display:none;
+}
+
+.question.active{
+    display:block;
+}
+
+label{
+    display:block;
+    padding:12px;
+    margin:10px 0;
+    background:#f2f2f2;
+    border-radius:10px;
+    cursor:pointer;
+}
+
+/* 結果區塊 */
+#result{
+    display:none;
+    padding:20px;
+    background:#f7f7f7;
+    border-radius:15px;
+    text-align:center;
+}
+
+/* ⭐ 重點：電腦螢幕自適應圖片 */
+.result-photo{
+    width:100%;
+    max-width:420px;      /* 電腦最大不要超過420px */
+    max-height:70vh;      /* 不超過螢幕高度70% */
+    height:auto;
+    display:block;
+    margin:20px auto;
+    border-radius:15px;
+    object-fit:contain;
+}
+.start-page{
+    max-width:700px;
+    margin:auto;
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,.1);
+    position:relative;
+}
+
+.start-image{
+    width:100%;
+    display:block;
+    border-radius:20px;
+}
+
+.start-btn{
+    position:absolute;
+    left:50%;
+    top:50%;
+    transform:translate(-50%,-50%);
+
+    padding:15px 40px;
+    font-size:22px;
+    border:none;
+    border-radius:50px;
+
+    background:#ff7b00;
+    color:white;
+    cursor:pointer;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.2);
+}
+
+.start-btn:hover{
+    background:#ff9500;
+}
+</style>
+</head>
+
+<body>
+
+<!-- 開場頁 -->
+<div id="startPage" class="start-page">
+
+    <img src="images/start-page.png" class="start-image">
+
+    <button class="start-btn" onclick="startQuiz()">
+        開始測驗
+    </button>
+
+</div>
+
+<!-- 題目 -->
+<div class="container">
+
+<h1>❄️ 《生活人格測驗｜測出你最適合的冷氣品牌》</h1>
+
+<div class="question active" id="q1">
+<h3>Q1. 買東西時你最在意什麼？</h3>
+<label onclick="next('A')">A. 功能夠多、價格合理最重要</label>
+<label onclick="next('B')">B. 產品背後的技術與專業度</label>
+<label onclick="next('C')">C. 耐用穩定，用久一點沒關係</label>
+<label onclick="next('D')">D. 設計、工藝與使用體驗</label>
+<label onclick="next('E')">E. 好用就好，品牌不重要</label>
+</div>
+
+<div class="question" id="q2">
+<h3>Q2. 工作上你更喜歡跟哪類型同事共事？</h3>
+<label onclick="next('A')">A. 最有效率的方案派</label>
+<label onclick="next('B')">B. 重視流程與細節派</label>
+<label onclick="next('C')">C. 穩紮穩打派</label>
+<label onclick="next('D')">D. 喜歡研究新技術派</label>
+<label onclick="next('E')">E. 隨遇而安派</label>
+</div>
+
+<div class="question" id="q3">
+<h3>Q3. 朋友眼中的你？</h3>
+<label onclick="next('A')">A. 精打細算</label>
+<label onclick="next('B')">B. 做事可靠</label>
+<label onclick="next('C')">C. 很有原則</label>
+<label onclick="next('D')">D. 有品味</label>
+<label onclick="next('E')">E. 很好相處</label>
+</div>
+
+<div class="question" id="q4">
+<h3>Q4. 選車時你會偏向？</h3>
+<label onclick="next('A')">A. 配備滿滿、價格合理</label>
+<label onclick="next('B')">B. 品牌技術實力強</label>
+<label onclick="next('C')">C. 耐用保值</label>
+<label onclick="next('D')">D. 操控與工藝表現</label>
+<label onclick="next('E')">E. 哪台順眼買哪台</label>
+</div>
+
+<div class="question" id="q5">
+<h3>Q5. 面對重大消費時，你通常會？</h3>
+<label onclick="next('A')">A. 先比較價格和功能</label>
+<label onclick="next('B')">B. 研究規格與技術差異</label>
+<label onclick="next('C')">C. 看長期使用成本</label>
+<label onclick="next('D')">D. 看評測與實際體驗</label>
+<label onclick="next('E')">E. 聽朋友推薦就好</label>
+</div>
+
+<div class="question" id="q6">
+<h3>Q6. 你最認同哪句話？</h3>
+<label onclick="next('A')">A. 錢要花在刀口上</label>
+<label onclick="next('B')">B. 專業的事交給專業</label>
+<label onclick="next('C')">C. 品質決定價值</label>
+<label onclick="next('D')">D. 細節成就完美</label>
+<label onclick="next('E')">E. 開心就好</label>
+</div>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+let scores = {A:0,B:0,C:0,D:0,E:0};
+let current = 1;
+
+const photos = {
+    A:"images/心理測驗插圖2-01.png",
+    B:"images/心理測驗插圖2-02.png",
+    C:"images/心理測驗插圖2-03.png",
+    D:"images/心理測驗插圖2-04.png",
+    E:"images/心理測驗插圖2-05.png"
+};
+
+function startQuiz(){
+
+    document.getElementById("startPage").style.display = "none";
+    document.querySelector(".container").style.display = "block";
+
+}
+
+function next(val){
+
+scores[val]++;
+
+document.getElementById("q"+current).classList.remove("active");
+current++;
+
+if(current > 6){
+    showResult();
+}else{
+    document.getElementById("q"+current).classList.add("active");
+}
+
+}
+
+function showResult(){
+
+document.querySelectorAll(".question").forEach(q=>{
+    q.style.display = "none";
+});
+
+let winner = "A";
+let max = -1;
+
+for(let k in scores){
+    if(scores[k] > max){
+        max = scores[k];
+        winner = k;
+    }
+}
+
+document.getElementById("result").style.display = "block";
+
+document.getElementById("result").innerHTML =
+`
+<img src="${photos[winner]}" class="result-photo">
+`;
+}
+
+</script>
+
+</body>
+</html>
